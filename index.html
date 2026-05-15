@@ -7,11 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: #1a1a1a;
@@ -55,53 +51,19 @@
       margin: 0 auto;
     }
 
-    /* Grade assimétrica estilo bento */
     .grid {
       display: grid;
       gap: 14px;
+      margin-bottom: 14px;
     }
 
-    /* Linha 1: foto grande à esquerda + 2 pequenas à direita */
-    .linha-1 {
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: 420px;
-    }
-
-    .linha-1 .coluna-direita {
-      display: grid;
-      gap: 14px;
-      grid-template-rows: 1fr 1fr;
-    }
-
-    /* Linha 2: 3 fotos iguais */
-    .linha-2 {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 320px;
-    }
-
-    /* Linha 3: foto pequena + foto grande + foto pequena */
-    .linha-3 {
-      grid-template-columns: 1fr 2fr 1fr;
-      grid-template-rows: 380px;
-    }
-
-    /* Linha 4: 4 fotos iguais */
-    .linha-4 {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 260px;
-    }
-
-    /* Linha 5: 2 fotos largas */
-    .linha-5 {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 350px;
-    }
-
-    /* Linha 6: foto panorâmica */
-    .linha-6 {
-      grid-template-columns: 1fr;
-      grid-template-rows: 280px;
-    }
+    .linha-1 { grid-template-columns: 2fr 1fr; grid-template-rows: 420px; }
+    .linha-1 .coluna-direita { display: grid; gap: 14px; grid-template-rows: 1fr 1fr; }
+    .linha-2 { grid-template-columns: repeat(3, 1fr); grid-template-rows: 320px; }
+    .linha-3 { grid-template-columns: 1fr 2fr 1fr; grid-template-rows: 380px; }
+    .linha-4 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 260px; }
+    .linha-5 { grid-template-columns: 1fr 1fr; grid-template-rows: 350px; }
+    .linha-6 { grid-template-columns: 1fr; grid-template-rows: 280px; }
 
     /* ── CADA FOTO ── */
     .foto {
@@ -109,6 +71,21 @@
       overflow: hidden;
       border-radius: 6px;
       cursor: pointer;
+      background: #2a2a2a;
+    }
+
+    /* Placeholder enquanto a imagem não existe */
+    .foto::before {
+      content: attr(data-num);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #555;
+      letter-spacing: 1px;
+      z-index: 0;
     }
 
     .foto img {
@@ -118,14 +95,16 @@
       display: block;
       transition: transform 0.5s ease, filter 0.4s ease;
       filter: brightness(0.92);
+      position: relative;
+      z-index: 1;
     }
 
-    .foto:hover img {
-      transform: scale(1.06);
-      filter: brightness(1);
-    }
+    /* Esconde img quebrada para mostrar o placeholder */
+    .foto img[src="images/foto1.jpg"]:not([complete]),
+    .foto img:not([src]) { display: none; }
 
-    /* Legenda ao passar o rato */
+    .foto:hover img { transform: scale(1.06); filter: brightness(1); }
+
     .foto .legenda {
       position: absolute;
       bottom: 0;
@@ -138,16 +117,11 @@
       letter-spacing: 1px;
       opacity: 0;
       transition: opacity 0.35s ease;
+      z-index: 2;
     }
 
-    .foto:hover .legenda {
-      opacity: 1;
-    }
-
-    /* Borda dourada nas fotos de destaque */
-    .foto.destaque {
-      border: 2px solid #f0d89e44;
-    }
+    .foto:hover .legenda { opacity: 1; }
+    .foto.destaque { border: 2px solid #f0d89e44; }
 
     /* ── LIGHTBOX ── */
     #lightbox {
@@ -161,9 +135,7 @@
       flex-direction: column;
     }
 
-    #lightbox.aberto {
-      display: flex;
-    }
+    #lightbox.aberto { display: flex; }
 
     #lightbox img {
       max-width: 90vw;
@@ -179,7 +151,6 @@
       font-size: 2.4rem;
       color: #fff;
       cursor: pointer;
-      line-height: 1;
       opacity: 0.7;
       transition: opacity 0.2s;
     }
@@ -203,9 +174,7 @@
       text-transform: uppercase;
     }
 
-    footer span {
-      color: #f0d89e;
-    }
+    footer span { color: #f0d89e; }
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
@@ -213,13 +182,8 @@
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
       }
-
-      .linha-1 .coluna-direita {
-        display: contents;
-      }
-
+      .linha-1 .coluna-direita { display: contents; }
       .foto { height: 200px; }
-      .linha-6 .foto { height: 220px; }
     }
 
     @media (max-width: 480px) {
@@ -231,33 +195,27 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
   <header class="capa">
     <h1>Ramiro</h1>
     <div class="divider"></div>
     <p>Memórias &nbsp;·&nbsp; 2026</p>
   </header>
 
-  <!-- COLAGEM -->
   <main class="colagem">
 
     <!-- LINHA 1: grande + 2 pequenas -->
     <div class="grid linha-1">
-      <div class="foto destaque" onclick="abrirLightbox(this)">
-        <!-- SUBSTITUI src pela tua foto 1 -->
-        <img src="https://placehold.co/900x420/2d2d2d/888?text=Foto+1" alt="Foto 1" />
+      <div class="foto destaque" data-num="foto 1" onclick="abrirLightbox(this)">
+        <img src="images/foto1.jpg" alt="Foto 1" />
         <div class="legenda">Legenda da foto 1</div>
       </div>
-
       <div class="coluna-direita">
-        <div class="foto" onclick="abrirLightbox(this)">
-          <!-- SUBSTITUI src pela tua foto 2 -->
-          <img src="https://placehold.co/440x200/222/777?text=Foto+2" alt="Foto 2" />
+        <div class="foto" data-num="foto 2" onclick="abrirLightbox(this)">
+          <img src="images/foto2.jpg" alt="Foto 2" />
           <div class="legenda">Legenda da foto 2</div>
         </div>
-        <div class="foto" onclick="abrirLightbox(this)">
-          <!-- SUBSTITUI src pela tua foto 3 -->
-          <img src="https://placehold.co/440x200/1e1e1e/666?text=Foto+3" alt="Foto 3" />
+        <div class="foto" data-num="foto 3" onclick="abrirLightbox(this)">
+          <img src="images/foto3.jpg" alt="Foto 3" />
           <div class="legenda">Legenda da foto 3</div>
         </div>
       </div>
@@ -265,79 +223,78 @@
 
     <!-- LINHA 2: 3 iguais -->
     <div class="grid linha-2">
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/440x320/252525/777?text=Foto+4" alt="Foto 4" />
+      <div class="foto" data-num="foto 4" onclick="abrirLightbox(this)">
+        <img src="images/foto4.jpg" alt="Foto 4" />
         <div class="legenda">Legenda da foto 4</div>
       </div>
-      <div class="foto destaque" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/440x320/2a2a2a/888?text=Foto+5" alt="Foto 5" />
+      <div class="foto destaque" data-num="foto 5" onclick="abrirLightbox(this)">
+        <img src="images/foto5.jpg" alt="Foto 5" />
         <div class="legenda">Legenda da foto 5</div>
       </div>
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/440x320/202020/666?text=Foto+6" alt="Foto 6" />
+      <div class="foto" data-num="foto 6" onclick="abrirLightbox(this)">
+        <img src="images/foto6.jpg" alt="Foto 6" />
         <div class="legenda">Legenda da foto 6</div>
       </div>
     </div>
 
     <!-- LINHA 3: pequena + grande + pequena -->
     <div class="grid linha-3">
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/300x380/1e1e1e/666?text=Foto+7" alt="Foto 7" />
+      <div class="foto" data-num="foto 7" onclick="abrirLightbox(this)">
+        <img src="images/foto7.jpg" alt="Foto 7" />
         <div class="legenda">Legenda da foto 7</div>
       </div>
-      <div class="foto destaque" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/700x380/2d2d2d/888?text=Foto+8" alt="Foto 8" />
+      <div class="foto destaque" data-num="foto 8" onclick="abrirLightbox(this)">
+        <img src="images/foto8.jpg" alt="Foto 8" />
         <div class="legenda">Legenda da foto 8</div>
       </div>
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/300x380/1a1a1a/555?text=Foto+9" alt="Foto 9" />
+      <div class="foto" data-num="foto 9" onclick="abrirLightbox(this)">
+        <img src="images/foto9.jpg" alt="Foto 9" />
         <div class="legenda">Legenda da foto 9</div>
       </div>
     </div>
 
     <!-- LINHA 4: 4 pequenas -->
     <div class="grid linha-4">
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/300x260/222/777?text=Foto+10" alt="Foto 10" />
+      <div class="foto" data-num="foto 10" onclick="abrirLightbox(this)">
+        <img src="images/foto10.jpg" alt="Foto 10" />
         <div class="legenda">Legenda da foto 10</div>
       </div>
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/300x260/252525/777?text=Foto+11" alt="Foto 11" />
+      <div class="foto" data-num="foto 11" onclick="abrirLightbox(this)">
+        <img src="images/foto11.jpg" alt="Foto 11" />
         <div class="legenda">Legenda da foto 11</div>
       </div>
-      <div class="foto destaque" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/300x260/2a2a2a/888?text=Foto+12" alt="Foto 12" />
+      <div class="foto destaque" data-num="foto 12" onclick="abrirLightbox(this)">
+        <img src="images/foto12.jpg" alt="Foto 12" />
         <div class="legenda">Legenda da foto 12</div>
       </div>
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/300x260/202020/666?text=Foto+13" alt="Foto 13" />
+      <div class="foto" data-num="foto 13" onclick="abrirLightbox(this)">
+        <img src="images/foto13.jpg" alt="Foto 13" />
         <div class="legenda">Legenda da foto 13</div>
       </div>
     </div>
 
     <!-- LINHA 5: 2 largas -->
     <div class="grid linha-5">
-      <div class="foto destaque" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/650x350/2d2d2d/888?text=Foto+14" alt="Foto 14" />
+      <div class="foto destaque" data-num="foto 14" onclick="abrirLightbox(this)">
+        <img src="images/foto14.jpg" alt="Foto 14" />
         <div class="legenda">Legenda da foto 14</div>
       </div>
-      <div class="foto" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/650x350/222/777?text=Foto+15" alt="Foto 15" />
+      <div class="foto" data-num="foto 15" onclick="abrirLightbox(this)">
+        <img src="images/foto15.jpg" alt="Foto 15" />
         <div class="legenda">Legenda da foto 15</div>
       </div>
     </div>
 
     <!-- LINHA 6: panorâmica -->
     <div class="grid linha-6">
-      <div class="foto destaque" onclick="abrirLightbox(this)">
-        <img src="https://placehold.co/1400x280/1e1e1e/666?text=Foto+16+—+Panorâmica" alt="Foto 16" />
+      <div class="foto destaque" data-num="foto 16" onclick="abrirLightbox(this)">
+        <img src="images/foto16.jpg" alt="Foto 16" />
         <div class="legenda">Legenda da foto panorâmica</div>
       </div>
     </div>
 
   </main>
 
-  <!-- RODAPÉ -->
   <footer>
     <p><span>Ramiro</span> &nbsp;·&nbsp; Graduação 2026</p>
   </footer>
