@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Colagem de Fotos - Ramiro</title>
+  <title>Colagem de Fotos - Ana</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
 
@@ -48,7 +48,6 @@
     .colagem {
       padding: 50px 30px;
       max-width: 1400px;
-      max-height: 1400px;
       margin: 0 auto;
     }
 
@@ -64,16 +63,20 @@
     .linha-3 { grid-template-columns: 1fr 2fr 1fr; grid-template-rows: 380px; }
     .linha-4 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 260px; }
     .linha-5 { grid-template-columns: 1fr 1fr; grid-template-rows: 350px; }
-    .linha-6 { grid-template-columns: 1fr; grid-template-rows: 280px; }
+    .linha-6 { grid-template-columns: 1fr 1fr; grid-template-rows: 350px; }
+    .linha-7 { grid-template-columns: 2fr 1fr; grid-template-rows: 420px; }
+    .linha-7 .coluna-direita { display: grid; gap: 14px; grid-template-rows: 1fr 1fr; }
 
     /* ── CADA FOTO ── */
     .foto {
       position: relative;
       overflow: hidden;
       border-radius: 6px;
+      align-items: center;
       cursor: pointer;
       background: #2a2a2a;
     }
+
 
     /* Placeholder enquanto a imagem não existe */
     .foto::before {
@@ -165,8 +168,27 @@
       letter-spacing: 1px;
     }
 
+    .invisible-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 220px;
+      height: 40px;
+
+      background: transparent;
+      border: none;
+      opacity: 0;
+
+      display: block;
+      z-index: 5;
+      cursor: pointer;
+    }
+
     /* ── RODAPÉ ── */
     footer {
+      position: relative;
       text-align: center;
       padding: 50px 20px;
       color: #555;
@@ -179,7 +201,7 @@
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      .linha-1, .linha-2, .linha-3, .linha-4, .linha-5 {
+      .linha-1, .linha-2, .linha-3, .linha-4, .linha-5, .linha-6, .linha-7 {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
       }
@@ -188,7 +210,7 @@
     }
 
     @media (max-width: 480px) {
-      .linha-1, .linha-2, .linha-3, .linha-4, .linha-5, .linha-6 {
+      .linha-1, .linha-2, .linha-3, .linha-4, .linha-5, .linha-6, .linha-7 {
         grid-template-columns: 1fr;
       }
     }
@@ -197,9 +219,9 @@
 <body>
 
   <header class="capa">
-    <h1>Ramiro</h1>
+    <h1>Parabéns Meu Amor</h1>
     <div class="divider"></div>
-    <p>Memórias &nbsp;·&nbsp; 2026</p>
+    <p>Graduação</p>
   </header>
 
   <main class="colagem">
@@ -208,96 +230,108 @@
     <div class="grid linha-1">
       <div class="foto destaque" data-num="foto 1" onclick="abrirLightbox(this)">
         <img src="images/foto1.jpeg" alt="Foto 1" />
-        <div class="legenda">Legenda da foto 1</div>
+        <div class="legenda">Cuba - 28/07/2025</div> 
       </div>
-      <div class="coluna-direita">
         <div class="foto" data-num="foto 2" onclick="abrirLightbox(this)">
-          <img src="images/foto2.jpg" alt="Foto 2" />
-          <div class="legenda">Legenda da foto 2</div>
+          <img src="images/foto2.jpeg" alt="Foto 2" />
+          <div class="legenda">Costa da Caparica - 2025</div>
         </div>
-        <div class="foto" data-num="foto 3" onclick="abrirLightbox(this)">
-          <img src="images/foto3.jpg" alt="Foto 3" />
-          <div class="legenda">Legenda da foto 3</div>
-        </div>
-      </div>
     </div>
 
     <!-- LINHA 2: 3 iguais -->
     <div class="grid linha-2">
-      <div class="foto" data-num="foto 4" onclick="abrirLightbox(this)">
-        <img src="images/foto4.jpg" alt="Foto 4" />
-        <div class="legenda">Legenda da foto 4</div>
+      <div class="foto" data-num="foto 3" onclick="abrirLightbox(this)">
+        <img src="images/foto3.jpeg" alt="Foto 3" />
+        <div class="legenda">Benfica vs Vitória - 21/03/2026</div>
       </div>
-      <div class="foto destaque" data-num="foto 5" onclick="abrirLightbox(this)">
-        <img src="images/foto5.jpg" alt="Foto 5" />
-        <div class="legenda">Legenda da foto 5</div>
+      <div class="foto destaque" data-num="foto 4" onclick="abrirLightbox(this)">
+        <img src="images/foto4.jpeg" alt="Foto 4" />
+        <div class="legenda">24/10/2025</div>
       </div>
-      <div class="foto" data-num="foto 6" onclick="abrirLightbox(this)">
-        <img src="images/foto6.jpg" alt="Foto 6" />
-        <div class="legenda">Legenda da foto 6</div>
+      <div class="foto" data-num="foto 5" onclick="abrirLightbox(this)">
+        <img src="images/foto5.jpeg" alt="Foto 5" />
+        <div class="legenda">10/12/2023</div>
       </div>
     </div>
 
     <!-- LINHA 3: pequena + grande + pequena -->
     <div class="grid linha-3">
-      <div class="foto" data-num="foto 7" onclick="abrirLightbox(this)">
-        <img src="images/foto7.jpg" alt="Foto 7" />
-        <div class="legenda">Legenda da foto 7</div>
+      <div class="foto" data-num="foto 6" onclick="abrirLightbox(this)">
+        <img src="images/foto6.jpeg" alt="Foto 6" />
+        <div class="legenda">Batizado - 29/06/2025</div>
       </div>
-      <div class="foto destaque" data-num="foto 8" onclick="abrirLightbox(this)">
-        <img src="images/foto8.jpg" alt="Foto 8" />
-        <div class="legenda">Legenda da foto 8</div>
+      <div class="foto destaque" data-num="foto 7" onclick="abrirLightbox(this)">
+        <img src="images/foto7.jpeg" alt="Foto 7" />
+        <div class="legenda">Selecta - 04/04/2022</div>
       </div>
-      <div class="foto" data-num="foto 9" onclick="abrirLightbox(this)">
-        <img src="images/foto9.jpg" alt="Foto 9" />
-        <div class="legenda">Legenda da foto 9</div>
+      <div class="foto" data-num="foto 8" onclick="abrirLightbox(this)">
+        <img src="images/foto8.jpeg" alt="Foto 8" />
+        <div class="legenda">Batizado - 29/06/2025</div>
       </div>
     </div>
 
     <!-- LINHA 4: 4 pequenas -->
     <div class="grid linha-4">
+      <div class="foto" data-num="foto 9" onclick="abrirLightbox(this)">
+        <img src="images/foto9.jpeg" alt="Foto 9" />
+        <div class="legenda">Selecta - 23/02/2022</div>
+      </div>
       <div class="foto" data-num="foto 10" onclick="abrirLightbox(this)">
-        <img src="images/foto10.jpg" alt="Foto 10" />
-        <div class="legenda">Legenda da foto 10</div>
+        <img src="images/foto10.jpeg" alt="Foto 10" />
+        <div class="legenda">Praça do Comércio - 27/11/2021</div>
       </div>
-      <div class="foto" data-num="foto 11" onclick="abrirLightbox(this)">
-        <img src="images/foto11.jpg" alt="Foto 11" />
-        <div class="legenda">Legenda da foto 11</div>
+      <div class="foto destaque" data-num="foto 11" onclick="abrirLightbox(this)">
+        <img src="images/foto11.jpeg" alt="Foto 11" />
+        <div class="legenda">Metro do Rossio - 03/11/2021</div>
       </div>
-      <div class="foto destaque" data-num="foto 12" onclick="abrirLightbox(this)">
-        <img src="images/foto12.jpg" alt="Foto 12" />
-        <div class="legenda">Legenda da foto 12</div>
-      </div>
-      <div class="foto" data-num="foto 13" onclick="abrirLightbox(this)">
-        <img src="images/foto13.jpg" alt="Foto 13" />
-        <div class="legenda">Legenda da foto 13</div>
+      <div class="foto" data-num="foto 12" onclick="abrirLightbox(this)">
+        <img src="images/foto12.jpeg" alt="Foto 12" />
+        <div class="legenda">14/03/2024</div>
       </div>
     </div>
 
     <!-- LINHA 5: 2 largas -->
     <div class="grid linha-5">
-      <div class="foto destaque" data-num="foto 14" onclick="abrirLightbox(this)">
-        <img src="images/foto14.jpg" alt="Foto 14" />
-        <div class="legenda">Legenda da foto 14</div>
+      <div class="foto destaque" data-num="foto 13" onclick="abrirLightbox(this)">
+        <img src="images/foto13.jpeg" alt="Foto 13" />
+        <div class="legenda">Winter Wonderland - 10/12/2023</div>
       </div>
-      <div class="foto" data-num="foto 15" onclick="abrirLightbox(this)">
-        <img src="images/foto15.jpg" alt="Foto 15" />
-        <div class="legenda">Legenda da foto 15</div>
+      <div class="foto" data-num="foto 14" onclick="abrirLightbox(this)">
+        <img src="images/foto14.jpeg" alt="Foto 14" />
+        <div class="legenda">Winter Wonderland - 10/12/2023</div>
       </div>
     </div>
 
-    <!-- LINHA 6: panorâmica -->
+    <!-- LINHA 6: 2 largas -->
     <div class="grid linha-6">
-      <div class="foto destaque" data-num="foto 16" onclick="abrirLightbox(this)">
-        <img src="images/foto16.jpg" alt="Foto 16" />
-        <div class="legenda">Legenda da foto panorâmica</div>
+      <div class="foto destaque" data-num="foto 15" onclick="abrirLightbox(this)">
+        <img src="images/foto15.jpeg" alt="Foto 15" />
+        <div class="legenda">Winter Wonderland - 10/12/2023</div>
+      </div>
+      <div class="foto" data-num="foto 16" onclick="abrirLightbox(this)">
+        <img src="images/foto16.jpeg" alt="Foto 16" />
+        <div class="legenda">Winter Wonderland - 10/12/2023</div>
       </div>
     </div>
+
+    <!-- LINHA 7: panorâmica -->
+    <div class="grid linha-7">
+      <div class="foto destaque" data-num="foto 17" onclick="abrirLightbox(this)">
+        <img src="images/foto17.jpeg" alt="Foto 17" />
+        <div class="legenda">Santos Populares (Graça) - 13/06/2024</div>
+      </div>
+        <div class="foto" data-num="foto 18" onclick="abrirLightbox(this)">
+          <img src="images/foto18.jpeg" alt="Foto 18" />
+          <div class="legenda">04/03/2024</div>
+        </div>
+    </div>
+
 
   </main>
 
   <footer>
-    <p><span>Ramiro</span> &nbsp;·&nbsp; Graduação 2026</p>
+    <a href="secret.html" class="invisible-button" aria-label="Go to secret page"></a>
+    <p><span>Ana</span> &nbsp;·&nbsp; Graduação 2026</p>
   </footer>
 
   <!-- LIGHTBOX -->
