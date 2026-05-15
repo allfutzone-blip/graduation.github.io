@@ -1,265 +1,375 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
+  <title>Colagem de Fotos - Ramiro</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
     }
 
     body {
-      background: #f5f7fb;
-      color: #222;
-      line-height: 1.6;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
     }
 
-    header {
-      background: white;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #2563eb;
-    }
-
-    nav a {
-      margin-left: 25px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      color: #2563eb;
-    }
-
-    .hero {
-      min-height: 80vh;
-      padding: 80px 8%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 50px;
-    }
-
-    .hero-text {
-      max-width: 560px;
-    }
-
-    .hero-text h1 {
-      font-size: 52px;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .hero-text h1 span {
-      color: #2563eb;
-    }
-
-    .hero-text p {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #2563eb;
-      color: white;
-      padding: 14px 26px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-    }
-
-    .hero-card {
-      background: white;
-      padding: 35px;
-      border-radius: 24px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
-      max-width: 380px;
-    }
-
-    .hero-card h2 {
-      margin-bottom: 15px;
-      color: #2563eb;
-    }
-
-    section {
-      padding: 70px 8%;
-    }
-
-    .section-title {
+    /* ── CABEÇALHO ── */
+    .capa {
       text-align: center;
-      font-size: 36px;
-      margin-bottom: 45px;
+      padding: 80px 20px 60px;
+      background: linear-gradient(160deg, #0f0c29, #302b63, #24243e);
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
-    }
-
-    .feature {
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-      transition: 0.3s;
-    }
-
-    .feature:hover {
-      transform: translateY(-5px);
-    }
-
-    .feature h3 {
+    .capa h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      letter-spacing: 4px;
+      color: #f0d89e;
       margin-bottom: 12px;
-      color: #2563eb;
     }
 
-    .about {
-      background: white;
-      border-radius: 24px;
-      padding: 50px;
-      max-width: 950px;
-      margin: auto;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    .capa p {
+      font-size: 1.1rem;
+      color: #aaa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    .contact {
-      text-align: center;
-      background: #2563eb;
-      color: white;
-      border-radius: 24px;
-      padding: 60px 30px;
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: #f0d89e;
+      margin: 24px auto;
     }
 
-    .contact p {
-      margin: 15px 0 30px;
+    /* ── GRADE PRINCIPAL ── */
+    .colagem {
+      padding: 50px 30px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    .contact .btn {
-      background: white;
-      color: #2563eb;
+    /* Grade assimétrica estilo bento */
+    .grid {
+      display: grid;
+      gap: 14px;
     }
 
+    /* Linha 1: foto grande à esquerda + 2 pequenas à direita */
+    .linha-1 {
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 420px;
+    }
+
+    .linha-1 .coluna-direita {
+      display: grid;
+      gap: 14px;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    /* Linha 2: 3 fotos iguais */
+    .linha-2 {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 320px;
+    }
+
+    /* Linha 3: foto pequena + foto grande + foto pequena */
+    .linha-3 {
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: 380px;
+    }
+
+    /* Linha 4: 4 fotos iguais */
+    .linha-4 {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 260px;
+    }
+
+    /* Linha 5: 2 fotos largas */
+    .linha-5 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 350px;
+    }
+
+    /* Linha 6: foto panorâmica */
+    .linha-6 {
+      grid-template-columns: 1fr;
+      grid-template-rows: 280px;
+    }
+
+    /* ── CADA FOTO ── */
+    .foto {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, filter 0.4s ease;
+      filter: brightness(0.92);
+    }
+
+    .foto:hover img {
+      transform: scale(1.06);
+      filter: brightness(1);
+    }
+
+    /* Legenda ao passar o rato */
+    .foto .legenda {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      color: #fff;
+      padding: 30px 16px 14px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .foto:hover .legenda {
+      opacity: 1;
+    }
+
+    /* Borda dourada nas fotos de destaque */
+    .foto.destaque {
+      border: 2px solid #f0d89e44;
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #lightbox.aberto {
+      display: flex;
+    }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 82vh;
+      border-radius: 8px;
+      box-shadow: 0 0 60px rgba(0,0,0,0.8);
+    }
+
+    #lightbox .fechar {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      font-size: 2.4rem;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    #lightbox .fechar:hover { opacity: 1; }
+
+    #lightbox .lb-texto {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #ccc;
+      letter-spacing: 1px;
+    }
+
+    /* ── RODAPÉ ── */
     footer {
       text-align: center;
-      padding: 25px;
-      color: #666;
+      padding: 50px 20px;
+      color: #555;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    @media (max-width: 800px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
+    footer span {
+      color: #f0d89e;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .linha-1, .linha-2, .linha-3, .linha-4, .linha-5 {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
       }
 
-      nav a {
-        margin: 0 10px;
+      .linha-1 .coluna-direita {
+        display: contents;
       }
 
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
+      .foto { height: 200px; }
+      .linha-6 .foto { height: 220px; }
+    }
 
-      .hero-text h1 {
-        font-size: 40px;
+    @media (max-width: 480px) {
+      .linha-1, .linha-2, .linha-3, .linha-4, .linha-5, .linha-6 {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">MyWebsite</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#features">Features</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+
+  <!-- CABEÇALHO -->
+  <header class="capa">
+    <h1>Ramiro</h1>
+    <div class="divider"></div>
+    <p>Memórias &nbsp;·&nbsp; 2026</p>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-text">
-        <h1>Build something <span>beautiful</span> online.</h1>
-        <p>
-          A clean, modern, responsive website template that you can customize for a portfolio,
-          business, project, or personal brand.
-        </p>
-        <a href="#contact" class="btn">Get Started</a>
+  <!-- COLAGEM -->
+  <main class="colagem">
+
+    <!-- LINHA 1: grande + 2 pequenas -->
+    <div class="grid linha-1">
+      <div class="foto destaque" onclick="abrirLightbox(this)">
+        <!-- SUBSTITUI src pela tua foto 1 -->
+        <img src="https://placehold.co/900x420/2d2d2d/888?text=Foto+1" alt="Foto 1" />
+        <div class="legenda">Legenda da foto 1</div>
       </div>
 
-      <div class="hero-card">
-        <h2>Simple & Modern</h2>
-        <p>
-          This page is made with only HTML and CSS, so you can host it for free on GitHub Pages.
-        </p>
-      </div>
-    </section>
-
-    <section id="features">
-      <h2 class="section-title">Features</h2>
-      <div class="features">
-        <div class="feature">
-          <h3>Responsive Design</h3>
-          <p>Looks good on desktop, tablet, and mobile screens.</p>
+      <div class="coluna-direita">
+        <div class="foto" onclick="abrirLightbox(this)">
+          <!-- SUBSTITUI src pela tua foto 2 -->
+          <img src="https://placehold.co/440x200/222/777?text=Foto+2" alt="Foto 2" />
+          <div class="legenda">Legenda da foto 2</div>
         </div>
-        <div class="feature">
-          <h3>Easy to Edit</h3>
-          <p>Change the text, colors, and sections to match your project.</p>
-        </div>
-        <div class="feature">
-          <h3>Free Hosting Ready</h3>
-          <p>Upload this as index.html to GitHub Pages and publish it online.</p>
+        <div class="foto" onclick="abrirLightbox(this)">
+          <!-- SUBSTITUI src pela tua foto 3 -->
+          <img src="https://placehold.co/440x200/1e1e1e/666?text=Foto+3" alt="Foto 3" />
+          <div class="legenda">Legenda da foto 3</div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="about">
-      <div class="about">
-        <h2 class="section-title">About This Website</h2>
-        <p>
-          This is a beginner-friendly website template. You can use it as a starting point for a
-          personal website, student project, event page, or small business landing page.
-        </p>
+    <!-- LINHA 2: 3 iguais -->
+    <div class="grid linha-2">
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/440x320/252525/777?text=Foto+4" alt="Foto 4" />
+        <div class="legenda">Legenda da foto 4</div>
       </div>
-    </section>
+      <div class="foto destaque" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/440x320/2a2a2a/888?text=Foto+5" alt="Foto 5" />
+        <div class="legenda">Legenda da foto 5</div>
+      </div>
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/440x320/202020/666?text=Foto+6" alt="Foto 6" />
+        <div class="legenda">Legenda da foto 6</div>
+      </div>
+    </div>
 
-    <section id="contact">
-      <div class="contact">
-        <h2>Contact Me</h2>
-        <p>Want to work together or learn more? Send me a message.</p>
-        <a href="mailto:your.email@example.com" class="btn">Email Me</a>
+    <!-- LINHA 3: pequena + grande + pequena -->
+    <div class="grid linha-3">
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/300x380/1e1e1e/666?text=Foto+7" alt="Foto 7" />
+        <div class="legenda">Legenda da foto 7</div>
       </div>
-    </section>
+      <div class="foto destaque" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/700x380/2d2d2d/888?text=Foto+8" alt="Foto 8" />
+        <div class="legenda">Legenda da foto 8</div>
+      </div>
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/300x380/1a1a1a/555?text=Foto+9" alt="Foto 9" />
+        <div class="legenda">Legenda da foto 9</div>
+      </div>
+    </div>
+
+    <!-- LINHA 4: 4 pequenas -->
+    <div class="grid linha-4">
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/300x260/222/777?text=Foto+10" alt="Foto 10" />
+        <div class="legenda">Legenda da foto 10</div>
+      </div>
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/300x260/252525/777?text=Foto+11" alt="Foto 11" />
+        <div class="legenda">Legenda da foto 11</div>
+      </div>
+      <div class="foto destaque" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/300x260/2a2a2a/888?text=Foto+12" alt="Foto 12" />
+        <div class="legenda">Legenda da foto 12</div>
+      </div>
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/300x260/202020/666?text=Foto+13" alt="Foto 13" />
+        <div class="legenda">Legenda da foto 13</div>
+      </div>
+    </div>
+
+    <!-- LINHA 5: 2 largas -->
+    <div class="grid linha-5">
+      <div class="foto destaque" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/650x350/2d2d2d/888?text=Foto+14" alt="Foto 14" />
+        <div class="legenda">Legenda da foto 14</div>
+      </div>
+      <div class="foto" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/650x350/222/777?text=Foto+15" alt="Foto 15" />
+        <div class="legenda">Legenda da foto 15</div>
+      </div>
+    </div>
+
+    <!-- LINHA 6: panorâmica -->
+    <div class="grid linha-6">
+      <div class="foto destaque" onclick="abrirLightbox(this)">
+        <img src="https://placehold.co/1400x280/1e1e1e/666?text=Foto+16+—+Panorâmica" alt="Foto 16" />
+        <div class="legenda">Legenda da foto panorâmica</div>
+      </div>
+    </div>
+
   </main>
 
+  <!-- RODAPÉ -->
   <footer>
-    <p>&copy; 2026 MyWebsite. All rights reserved.</p>
+    <p><span>Ramiro</span> &nbsp;·&nbsp; Graduação 2026</p>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <span class="fechar" onclick="fecharLightbox()">&times;</span>
+    <img id="lb-img" src="" alt="" />
+    <p class="lb-texto" id="lb-texto"></p>
+  </div>
+
+  <script>
+    function abrirLightbox(el) {
+      const img = el.querySelector('img');
+      const legenda = el.querySelector('.legenda');
+      document.getElementById('lb-img').src = img.src;
+      document.getElementById('lb-img').alt = img.alt;
+      document.getElementById('lb-texto').textContent = legenda ? legenda.textContent.trim() : '';
+      document.getElementById('lightbox').classList.add('aberto');
+    }
+
+    function fecharLightbox() {
+      document.getElementById('lightbox').classList.remove('aberto');
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) fecharLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') fecharLightbox();
+    });
+  </script>
 </body>
 </html>
